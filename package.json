@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "sass --watch src/styles:public & rollup -c -w",
-    "build": "sass src/styles:public & rollup -c"
+    "build": "sass src/styles:public --style=compressed & rollup -c --environment NODE_ENV:production"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.0",
