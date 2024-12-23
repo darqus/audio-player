@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "sass --watch src/styles:public/build & rollup -c -w",
-    "build": "sass src/styles:public/build & rollup -c"
+    "dev": "sass --watch src/styles:public & rollup -c -w",
+    "build": "sass src/styles:public & rollup -c"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.0",

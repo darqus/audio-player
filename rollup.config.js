@@ -13,10 +13,7 @@ export default [
       { file: 'public/build/bundle.js', format: 'esm', sourcemap: true },
     ],
     plugins: [
-      svelte({
-        // emitCss: true,
-      }),
-      // css({ output: 'index.css' }),
+      svelte({}),
       resolve({
         browser: true,
         dedupe: ['svelte'],
