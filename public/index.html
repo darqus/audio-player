@@ -12,6 +12,19 @@
       type="image/png"
       href="favicon.png"
     />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Nunito:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
     <!-- common styles -->
     <link
       rel="stylesheet"
@@ -20,16 +33,16 @@
     <!-- svelte audio player styles -->
     <link
       rel="stylesheet"
-      href="build/bundle.css"
+      href="build/index.css"
     />
   </head>
   <body>
-    <div id="audio-player-svelte"></div>
+    <div id="svelte-audio-player"></div>
     <script type="module">
       import AudioPlayer from './build/bundle.js'
 
       const app = new AudioPlayer({
-        target: document.getElementById('audio-player-svelte'),
+        target: document.getElementById('svelte-audio-player'),
         props: {
           tracks: [
             {

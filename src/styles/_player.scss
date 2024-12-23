@@ -1,0 +1,348 @@
+@use 'variables' as *;
+@use 'breakpoints' as *;
+
+.svelte-audio-player {
+  display: grid;
+  gap: $gap;
+  border: 1px solid $player-border-color;
+  border-radius: $player-border-radius;
+  padding: $gap;
+  box-shadow: 0 7px 16px 0 $player-box-shadow-color;
+  background-color: $white;
+
+  .track-name {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 18px 1fr;
+    column-gap: $gap;
+    font-size: 0.8rem;
+    max-width: 300px;
+    align-items: center;
+
+    @include respond-to('small') {
+      max-width: 680px;
+    }
+
+    .counter {
+      color: $text-color;
+      font-weight: 700;
+    }
+
+    .title {
+      color: $name-color;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      align-items: center;
+    }
+  }
+
+  .track-info {
+    display: grid;
+    row-gap: $gap;
+
+    @include respond-to('small') {
+      display: grid;
+      column-gap: $gap;
+      grid-template-columns: auto 1fr;
+    }
+
+    .buttons-control {
+      display: grid;
+      grid-template-columns: repeat(5, $control-size-molile);
+      gap: 5px;
+      align-items: center;
+      justify-content: space-between;
+
+      @include respond-to('small') {
+        grid-template-columns: repeat(5, $control-size);
+      }
+
+      button {
+        display: grid;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: opacity $duration;
+
+        svg path {
+          fill: $control-color;
+        }
+
+        &:focus {
+          opacity: $opacity-focus;
+        }
+
+        &:hover {
+          opacity: $opacity-hover;
+        }
+
+        &.repeat,
+        &.shuffle {
+          opacity: 0.2;
+        }
+      }
+    }
+
+    .track-ranges {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: $gap;
+    }
+  }
+
+  .progress-control {
+    display: grid;
+    grid-template-columns:
+      $current-time-width
+      minmax(80px, 120px)
+      $duration-time-width;
+    align-items: center;
+    gap: $gap;
+
+    @include respond-to('small') {
+      grid-template-columns:
+        $current-time-width
+        minmax(130px, 250px)
+        $duration-time-width;
+    }
+
+    .current-time,
+    .duration-time {
+      display: grid;
+      font-size: 0.9rem;
+      color: $text-color;
+    }
+
+    input[type='range'] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      margin: 0;
+      background: transparent;
+
+      &::-webkit-slider-runnable-track {
+        width: 100%;
+        height: $track-height;
+        cursor: pointer;
+        animate: 0.2s;
+        background-color: $track-background-color;
+        border-radius: $track-border-radius;
+      }
+
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: $thumb-size;
+        height: $thumb-size;
+        background-color: $thumb-background-color;
+        border-radius: 50%;
+        cursor: pointer;
+        margin-top: -4px;
+        border: 2px solid $white;
+        box-shadow: 0px 1px 4px 0px $range-control-box-shadow-color;
+      }
+
+      &::-moz-range-track {
+        width: 100%;
+        height: $track-height;
+        cursor: pointer;
+        background-color: $track-background-color;
+        border-radius: $track-border-radius;
+        border: 2px solid $white;
+        box-shadow: 0px 1px 4px 0px $range-control-box-shadow-color;
+      }
+
+      &::-moz-range-thumb {
+        width: $thumb-size;
+        height: $thumb-size;
+        background-color: $thumb-background-color;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid $white;
+        box-shadow: 0px 1px 4px 0px $range-control-box-shadow-color;
+      }
+
+      &::-ms-track {
+        width: 100%;
+        height: $track-height;
+        cursor: pointer;
+        background-color: transparent;
+        border-color: transparent;
+        color: transparent;
+      }
+
+      &::-ms-fill-lower {
+        background-color: $track-background-color;
+        border-radius: $track-border-radius;
+      }
+
+      &::-ms-fill-upper {
+        background-color: $track-background-color;
+        border-radius: $track-border-radius;
+      }
+
+      &::-ms-thumb {
+        width: $thumb-size;
+        height: $thumb-size;
+        background-color: $thumb-background-color;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      &:focus {
+        outline: none;
+
+        &::-webkit-slider-runnable-track {
+          background-color: $track-background-color-focus;
+        }
+
+        &::-moz-range-track {
+          background-color: $track-background-color-focus;
+        }
+
+        &::-ms-fill-lower {
+          background-color: $track-background-color-focus;
+        }
+
+        &::-ms-fill-upper {
+          background-color: $track-background-color-focus;
+        }
+      }
+    }
+  }
+
+  .volume-control {
+    display: grid;
+    grid-template-columns:
+      $control-size-small
+      minmax(40px, 60px);
+    gap: 2px;
+    align-items: center;
+
+    @include respond-to('small') {
+      grid-template-columns:
+        $control-size-small
+        minmax(50px, 100px);
+    }
+
+    button {
+      display: grid;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: opacity $duration;
+
+      svg path {
+        fill: $control-color;
+      }
+
+      &:focus {
+        opacity: $opacity-focus;
+      }
+
+      &:hover {
+        opacity: $opacity-hover;
+      }
+    }
+
+    input[type='range'] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      margin: 0;
+      background: transparent;
+
+      &::-webkit-slider-runnable-track {
+        width: 100%;
+        height: $track-height;
+        cursor: pointer;
+        animate: 0.2s;
+        background: $track-background-color;
+        border-radius: $track-border-radius;
+      }
+
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: $thumb-size;
+        height: $thumb-size;
+        background-color: $thumb-background-color;
+        border-radius: 50%;
+        cursor: pointer;
+        margin-top: -4px;
+        border: 2px solid $white;
+        box-shadow: 0px 1px 4px 0px $range-control-box-shadow-color;
+      }
+
+      &::-moz-range-track {
+        width: 100%;
+        height: $track-height;
+        cursor: pointer;
+        background-color: $track-background-color;
+        border-radius: $track-border-radius;
+        border: 2px solid $white;
+        box-shadow: 0px 1px 4px 0px $range-control-box-shadow-color;
+      }
+
+      &::-moz-range-thumb {
+        width: $thumb-size;
+        height: $thumb-size;
+        background-color: $thumb-background-color;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid $white;
+        box-shadow: 0px 1px 4px 0px $range-control-box-shadow-color;
+      }
+
+      &::-ms-track {
+        width: 100%;
+        height: $track-height;
+        cursor: pointer;
+        background-color: transparent;
+        border-color: transparent;
+        color: transparent;
+      }
+
+      &::-ms-fill-lower {
+        background-color: $track-background-color;
+        border-radius: $track-border-radius;
+      }
+
+      &::-ms-fill-upper {
+        background-color: $track-background-color;
+        border-radius: $track-border-radius;
+      }
+
+      &::-ms-thumb {
+        width: $thumb-size;
+        height: $thumb-size;
+        background-color: $thumb-background-color;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      &:focus {
+        outline: none;
+
+        &::-webkit-slider-runnable-track {
+          background-color: $track-background-color-focus;
+        }
+
+        &::-moz-range-track {
+          background-color: $track-background-color-focus;
+        }
+
+        &::-ms-fill-lower {
+          background-color: $track-background-color-focus;
+        }
+
+        &::-ms-fill-upper {
+          background-color: $track-background-color-focus;
+        }
+      }
+    }
+  }
+}

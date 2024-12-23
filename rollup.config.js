@@ -2,7 +2,7 @@ import svelte from 'rollup-plugin-svelte'
 import commonjs from '@rollup/plugin-commonjs'
 import { terser } from 'rollup-plugin-terser'
 import resolve from '@rollup/plugin-node-resolve'
-import css from 'rollup-plugin-css-only'
+// import css from 'rollup-plugin-css-only'
 
 const production = !process.env.ROLLUP_WATCH
 
@@ -14,9 +14,9 @@ export default [
     ],
     plugins: [
       svelte({
-        emitCss: true,
+        // emitCss: true,
       }),
-      css({ output: 'bundle.css' }),
+      // css({ output: 'index.css' }),
       resolve({
         browser: true,
         dedupe: ['svelte'],

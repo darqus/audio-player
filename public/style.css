@@ -1,6 +1,9 @@
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
+  font-family: Lato, sans-serif;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
   padding: 0;
   display: grid;
   justify-content: center;
@@ -9,9 +12,8 @@ body {
   background-color: #dedede;
 }
 
-#audio-player-svelte {
+#svelte-audio-player {
   height: inherit;
   display: grid;
   align-items: center;
-  padding: 2rem;
 }
